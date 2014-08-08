@@ -38,13 +38,15 @@ and open the template in the editor.
 .onoffswitch-inner:before {
     content: "ON";
     padding-left: 10px;
-    background-color: #5CB85C; color: #FFFFFF;
+    /*background-color: #5CB85C;*/
+    color: #FFFFFF;
 }
 
 .onoffswitch-inner:after {
     content: "OFF";
     padding-right: 10px;
-    background-color: #BDBDBD; color: #FFFFFF;
+    /*background-color: #BDBDBD;*/
+    color: #FFFFFF;
     text-align: right;
 }
 
@@ -64,10 +66,6 @@ and open the template in the editor.
 .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
     right: 0px; 
 }
-
-
-
-
 
 .label-on {
     background-color: #5CB85C;
@@ -97,11 +95,9 @@ and open the template in the editor.
     border-radius: 0.25em;
 }
 
-
 .label-off i {
     color: #CFD5CF;
 }
-
 .label-del {
     background-color: #D9534F;
     color: #FFF;   
@@ -112,4 +108,12 @@ and open the template in the editor.
     white-space: nowrap;
     vertical-align: baseline;
     border-radius: 0.25em;
+}
+
+.bg-gray:before, .bg-gray:after {
+    background-color: #BDBDBD;
+}
+
+.bg-green:before, .bg-green:after {
+    background-color: #5CB85C;
 }
