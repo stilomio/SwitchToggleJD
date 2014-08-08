@@ -33,6 +33,19 @@ class SwitchToggleJD extends CWidget {
     /* Clase Principal del CheckBox */
     public $classMain = 'onoffswitch-checkbox';
 
+    /* Class CSS para los Items */
+    public $classitem = 'itembox';
+
+    /* Class CSS para el Select ALL */
+    public $classall = 'allbox';
+
+    /* Opciones (item o selectall) */
+    public $type = 'item';
+
+
+    /* Opcion que Permite generar un Select All de los Checkbox */
+    public $SelectAll;
+
     public function init() {
 
         if ($this->id == NULL) {
@@ -78,6 +91,8 @@ class SwitchToggleJD extends CWidget {
             $htmlOptions = array('class' => $this->classMain, 'id' => $this->id);
         }
 
+        $htmlOptions = $this->Type($htmlOptions);
+
         return $htmlOptions;
     }
 
@@ -102,6 +117,42 @@ class SwitchToggleJD extends CWidget {
         } else {
             throw new Exception(Yii::t('Switch Toggle JD - Error: Couldn\'t find assets folder to publish.'));
         }
+    }
+
+    public function Type($htmlOptions) {
+
+        if ($this->type == 'item') {
+            $htmlOptions['class'] = $htmlOptions['class'] . " itembox";
+        } elseif ($this->type == 'selectall') {
+            $htmlOptions['class'] = $htmlOptions['class'] . " allbox";
+
+            Yii::app()->getClientScript()->registerCoreScript('jquery');
+
+            /* Class de los checkbox Items */
+            $classitem = $this->classitem;
+            /* Class CSS Select ALL */
+            $classall = $this->classall;
+
+            /* JS de Select ALL de Checkbox */
+            Yii::app()->clientScript->registerScript('SelectAllCheckbox', "
+                jQuery(function($) {
+                $('.{$classall}').click(function() {
+                    if ($('.{$classall}').is(':checked')) {
+                        var checkboxes = $(this).closest('form').find('.{$classitem}');
+                        checkboxes.attr('checked', 'checked');
+                    }
+                    else {
+                        var checkboxes = $(this).closest('form').find('.{$classitem}');
+                        checkboxes.removeAttr('checked');
+                    }
+                });
+            });          
+            ");
+        } else {
+            throw new Exception('Error en Type debes seleccionar "item" o "selectall"');
+        }
+
+        return $htmlOptions;
     }
 
 }
