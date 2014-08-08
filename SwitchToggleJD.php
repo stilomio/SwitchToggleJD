@@ -14,10 +14,24 @@ class SwitchToggleJD extends CWidget {
      * Posibles Valores: TRUE o FALSE
      */
 
+    /* Estatus (TRUE o FALSE) */
+
     public $state = FALSE;
+
+    /* Id del Checkbox */
     public $id = NULL;
+
+    /* Modelo de la Tabla (Es opcional para usar el widget sin modelos) */
     public $model = NULL;
+
+    /* Nombre del Atributo */
     public $attribute;
+
+    /* Agregar Opciones HTML al CheckBox */
+    public $htmlOptions = array();
+
+    /* Clase Principal del CheckBox */
+    public $classMain = 'onoffswitch-checkbox';
 
     public function init() {
 
@@ -36,20 +50,41 @@ class SwitchToggleJD extends CWidget {
     public function LabelCheckBox() {
 
         if ($this->model != NULL) {
-            $check = CHtml::activeCheckBox($this->model, $this->attribute, array('class' => 'onoffswitch-checkbox', 'id' => $this->id));
+            $check = CHtml::activeCheckBox($this->model, $this->attribute, $this->htmlOptions());
         } else {
+            $check = CHtml::checkBox($this->attribute, $this->state, $this->htmlOptions());
+        }
+        return $check;
+    }
 
-            $check = CHtml::checkBox($this->attribute, $this->state, array('class' => 'onoffswitch-checkbox', 'id' => $this->id));
+    public function htmlOptions() {
+
+        if (count($this->htmlOptions) > 0) {
+
+            $htmlOptions = $this->htmlOptions;
+
+            if (isset($htmlOptions['class'])) {
+                $htmlOptions['class'] = $htmlOptions['class'] . ' ' . $this->classMain;
+            } else {
+                $htmlOptions['class'] = $this->classMain;
+            }
+
+            if (isset($htmlOptions['id'])) {
+                $this->id = $htmlOptions['id'];
+            } else {
+                $htmlOptions['id'] = $this->id;
+            }
+        } else {
+            $htmlOptions = array('class' => $this->classMain, 'id' => $this->id);
         }
 
-        return $check;
+        return $htmlOptions;
     }
 
     private function Labels() {
 
         $data = '<div class="onoffswitch">';
         $data .= $this->LabelCheckBox();
-        // $data .= '<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>';
         $data .= '<label class="onoffswitch-label" for="' . $this->id . '">';
         $data .= '<span class="onoffswitch-inner"></span>';
         $data .= '<span class="onoffswitch-switch"></span>';
