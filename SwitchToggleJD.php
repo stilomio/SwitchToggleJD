@@ -14,10 +14,9 @@ class SwitchToggleJD extends CWidget {
      * Posibles Valores: TRUE o FALSE
      */
 
-    
     public $coloron;
-    /* Estatus (TRUE o FALSE) */
 
+    /* Estatus (TRUE o FALSE) */
     public $state = FALSE;
 
     /* Id del Checkbox */
@@ -33,7 +32,7 @@ class SwitchToggleJD extends CWidget {
     public $htmlOptions = array();
 
     /* Clase Principal del CheckBox */
-    public $classMain = 'onoffswitch-checkbox';
+    public $classMain = 'cmn-toggle cmn-toggle-round';
 
     /* Class CSS para los Items */
     public $classitem = 'itembox';
@@ -54,7 +53,7 @@ class SwitchToggleJD extends CWidget {
             $this->id = $this->attribute;
         }
         self::registerFile();
-        
+
         echo self::Labels();
     }
 
@@ -100,11 +99,9 @@ class SwitchToggleJD extends CWidget {
 
     private function Labels() {
 
-        $data = '<div class="onoffswitch">';
+        $data = '<div class="switch">';
         $data .= $this->LabelCheckBox();
-        $data .= '<label class="onoffswitch-label" for="' . $this->id . '">';
-        $data .= '<span class="onoffswitch-inner bg-green bg-gray"></span>';
-        $data .= '<span class="onoffswitch-switch"></span>';
+        $data .= '<label for="' . $this->id . '">';
         $data .= '</label>';
         $data .= '</div>';
         return $data;

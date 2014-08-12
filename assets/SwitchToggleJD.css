@@ -1,119 +1,81 @@
 /*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
-/* 
-    Created on : 03/08/2014, 09:20:16 PM
-    Author     : Stilomio 
-    Name       : Jose Daniel Stilomio
+Link Autor CSS
+http://callmenick.com/2014/05/13/css-toggle-switch-examples/
 */
 
-.onoffswitch {
-    position: relative; width: 69px;
-    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+/* ============================================================
+  COMMON
+============================================================ */
+.cmn-toggle {
+    position: absolute;
+    margin-left: -9999px;
+    visibility: hidden;
+    margin: 2px;
 }
-
-.onoffswitch-checkbox {
-    display: none;
+.cmn-toggle + label {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    outline: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
-
-.onoffswitch-label {
-    display: block; overflow: hidden; cursor: pointer;
-    border: 2px solid #FFFFFF; border-radius: 7px;
+/* ============================================================
+  SWITCH 1 - ROUND
+============================================================ */
+input.cmn-toggle-round + label {
+    padding: 2px;
+    width: 53px;
+    height: 20px;
+    background-color: #dddddd;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    -ms-border-radius: 30px;
+    -o-border-radius: 30px;
+    border-radius: 30px;
 }
-
-.onoffswitch-inner {
-    display: block; width: 200%; margin-left: -100%;
-    -moz-transition: margin 0.3s ease-in 0s; -webkit-transition: margin 0.3s ease-in 0s;
-    -o-transition: margin 0.3s ease-in 0s; transition: margin 0.3s ease-in 0s;
+input.cmn-toggle-round + label:before, input.cmn-toggle-round + label:after {
+    display: block;
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    bottom: 1px;
+    content: "";
 }
-
-.onoffswitch-inner:before, .onoffswitch-inner:after {
-    display: block; float: left; width: 50%; height: 26px; padding: 0; line-height: 26px;
-    font-size: 12px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
-    -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+input.cmn-toggle-round + label:before {
+    right: 1px;
+    background-color: #f1f1f1;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    -ms-border-radius: 30px;
+    -o-border-radius: 30px;
+    border-radius: 30px;
+    -webkit-transition: background 0.4s;
+    -moz-transition: background 0.4s;
+    -o-transition: background 0.4s;
+    transition: background 0.4s;
 }
-
-.onoffswitch-inner:before {
-    content: "ON";
-    padding-left: 10px;
-    /*background-color: #5CB85C;*/
-    color: #FFFFFF;
+input.cmn-toggle-round + label:after {
+    width: 20px;
+    background-color: #fff;
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    -ms-border-radius: 100%;
+    -o-border-radius: 100%;
+    border-radius: 100%;
+    -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    -webkit-transition: margin 0.4s;
+    -moz-transition: margin 0.4s;
+    -o-transition: margin 0.4s;
+    transition: margin 0.4s;
 }
-
-.onoffswitch-inner:after {
-    content: "OFF";
-    padding-right: 10px;
-    /*background-color: #BDBDBD;*/
-    color: #FFFFFF;
-    text-align: right;
+input.cmn-toggle-round:checked + label:before {
+    background-color: #8ce196;
 }
-
-.onoffswitch-switch {
-    display: block; width: 16px; margin: 5px;
-    background: #FFFFFF;
-    border: 2px solid #FFFFFF; border-radius: 7px;
-    position: absolute; top: 0; bottom: 0; right: 39px;
-    -moz-transition: all 0.3s ease-in 0s; -webkit-transition: all 0.3s ease-in 0s;
-    -o-transition: all 0.3s ease-in 0s; transition: all 0.3s ease-in 0s; 
-}
-
-.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
-    margin-left: 0;
-}
-
-.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
-    right: 0px; 
-}
-
-.label-on {
-    background-color: #5CB85C;
-    color: #FFF;
-    display: inline;
-    padding: 0.2em 0.6em 0.3em;
-    line-height: 1;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: baseline;
-    border-radius: 0.25em;
-}
-
-.label-on i {
-    color: #7CEE7C;
-}
-
-.label-off {
-    background-color: #BDBDBD;
-    color: #FFF;   
-    display: inline;
-    padding: 0.2em 0.6em 0.3em;
-    line-height: 1;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: baseline;
-    border-radius: 0.25em;
-}
-
-.label-off i {
-    color: #CFD5CF;
-}
-.label-del {
-    background-color: #D9534F;
-    color: #FFF;   
-    display: inline;
-    padding: 0.2em 0.6em 0.3em;
-    line-height: 1;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: baseline;
-    border-radius: 0.25em;
-}
-
-.bg-gray:before, .bg-gray:after {
-    background-color: #BDBDBD;
-}
-
-.bg-green:before, .bg-green:after {
-    background-color: #5CB85C;
+input.cmn-toggle-round:checked + label:after {
+    margin-left: 30px;
 }
